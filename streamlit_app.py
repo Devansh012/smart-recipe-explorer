@@ -16,7 +16,7 @@ if st.button("Simplify Recipe"):
     else:
         with st.spinner("Simplifying recipe..."):
             response = requests.post(
-                "http://127.0.0.1:8000/api/ai/simplify/",  # LOCAL for now
+                "https://smart-recipe-explorer-czxqb2fteyydp6wtsfmbuw.streamlit.app/ai/simplify/",  # LOCAL for now
                 json={"instructions": instructions}
             )
 
