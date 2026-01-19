@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Recipe Explorer</title>
+</head>
+<body>
+    <h1>Smart Recipe Explorer</h1>
+
+    <textarea id="instructions" rows="6" cols="60"
+        placeholder="Enter recipe instructions here..."></textarea>
+    <br><br>
+
+    <button onclick="simplifyRecipe()">Simplify Recipe</button>
+
+    <h3>Simplified Recipe</h3>
+    <pre id="output"></pre>
+
+    <script>
+        async function simplifyRecipe() {
+            const instructions = document.getElementById("instructions").value;
+
+            const response = await fetch("/ai/simplify/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ instructions })
+            });
+
+            const data = await response.json();
+            document.getElementById("output").innerText =
+                data.simplified_recipe || data.error;
+        }
+    </script>
+</body>
+</html>
